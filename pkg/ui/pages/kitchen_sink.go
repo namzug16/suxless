@@ -3,12 +3,17 @@ package pages
 import (
 	"strings"
 
+	. "github.com/namzug16/gotags"
 	"github.com/namzug16/suxless/pkg/ui/lucide"
 	kitchensink "github.com/namzug16/suxless/pkg/ui/pages/kitchen_sink"
-	. "github.com/namzug16/gotags"
+	"github.com/namzug16/suxless/pkg/ui/pages/layouts"
 )
 
 func KitchenSink() HTML {
+	return layouts.Primary("Kitchen Sink", "/kitchen-sink", kitchenSinkContent())
+}
+
+func kitchenSinkContent() HTML {
 	return Div(
 		X.Class("w-full flex gap-x-10"),
 		Div(

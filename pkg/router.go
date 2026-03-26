@@ -6,6 +6,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/namzug16/suxless/pkg/handlers"
+	handlerspages "github.com/namzug16/suxless/pkg/handlers/pages"
 	files "github.com/namzug16/suxless/public"
 )
 
@@ -15,7 +16,8 @@ func RegisterRoutes(e *echo.Echo) error {
 		return err
 	}
 
-	e.GET("/", handlers.Home)
+	e.GET("/", handlerspages.Home)
+	e.GET("/kitchen-sink", handlerspages.KitchenSink)
 	e.GET("/health", handlers.Health)
 	e.GET("/static/*", echo.WrapHandler(http.StripPrefix("/static/", http.FileServer(http.FS(staticFS)))))
 

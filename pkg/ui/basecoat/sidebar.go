@@ -77,20 +77,20 @@ func Sidebar(params SidebarParams) gt.HTML {
 			gt.If(
 				params.Header != nil,
 				gt.Header(
-					gt.X.Class(params.HeaderExtraClasses),
+					// gt.X.Class(params.HeaderExtraClasses),
 					params.HeaderAttrs,
 					normalizeAnyComponent(params.Header),
 				),
 			),
 			gt.Section(
-				gt.X.Class(params.ContentExtraClasses),
+				// gt.X.Class(params.ContentExtraClasses),
 				params.ContentAttrs,
 				content,
 			),
 			gt.If(
 				params.Footer != nil,
 				gt.Footer(
-					gt.X.Class(params.FooterExtraClasses),
+					// gt.X.Class(params.FooterExtraClasses),
 					params.FooterAttrs,
 					normalizeAnyComponent(params.Footer),
 				),
