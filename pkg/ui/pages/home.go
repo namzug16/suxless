@@ -11,7 +11,7 @@ func Home() HTML {
 
 func homeContent() HTML {
 	return Div(
-		X.Class("mx-auto w-full max-w-4xl space-y-8"),
+		X.Class("w-full space-y-8"),
 		Div(
 			X.Class("space-y-2"),
 			H1(X.Class("text-3xl font-semibold tracking-tight"), "Suxless server is up"),

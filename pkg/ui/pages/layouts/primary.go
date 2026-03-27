@@ -2,6 +2,7 @@ package layouts
 
 import (
 	. "github.com/namzug16/gotags"
+	"github.com/namzug16/gotags/htmx"
 	"github.com/namzug16/suxless/pkg/ui"
 	"github.com/namzug16/suxless/pkg/ui/basecoat"
 	"github.com/namzug16/suxless/pkg/ui/lucide"
@@ -15,6 +16,7 @@ func Primary(title, currentPath string, content HTML) HTML {
 			JS(),
 		),
 		Body(
+			X.Attr("data-theme", "light"),
 			X.Class("min-h-screen bg-background"),
 			Div(
 				X.Class("flex min-h-screen"),
@@ -79,21 +81,41 @@ func Primary(title, currentPath string, content HTML) HTML {
 func sidebarMenu(currentPath string) HTML {
 	return basecoat.Sidebar(basecoat.SidebarParams{
 		ID:    "primary-sidebar",
-		Label: "Main navigation",
-		Header: Div(
-			X.Class("flex items-center gap-2"),
-			Img(
-				X.Src(ui.StaticFile("logo.png")),
-				X.Alt("Suxless"),
-				X.Class("size-6"),
-			),
-			Span(X.Class("font-medium"), "Suxless"),
-		),
-		Menu: []basecoat.SidebarItem{
-			{Label: "Home", URL: "/", Current: currentPath == "/"},
-			{Label: "Kitchen Sink", URL: "/kitchen-sink", Current: currentPath == "/kitchen-sink"},
+		Label: "Sidebar navigation",
+		MainAttrs: []HTML{
+			htmx.Boost("true"),
 		},
-		Footer: "UI playground",
+		ContentExtraClasses: "scrollbar",
+		HeaderExtraClasses:  "h-14 flex flex-col items-center",
+		Menu: []basecoat.SidebarItem{
+			{
+				Type:  "group",
+				Label: "Getting started",
+				Items: []basecoat.SidebarItem{
+					{
+						Label:   "Home",
+						URL:     "/",
+						Current: currentPath == "/",
+						Icon:    lucide.House(),
+					},
+					{
+						Label:   "Kitchen Sink",
+						URL:     "/kitchen-sink",
+						Current: currentPath == "/kitchen-sink",
+						Icon:    lucide.FlaskConical(),
+					},
+				},
+			},
+		},
+		Header: A(
+			X.Href("/"),
+			X.Class("btn-ghost p-2 h-12 w-full justify-start"),
+			Div(
+				X.Class("grid flex-1 text-left text-sm leading-tight"),
+				Span(X.Class("trucate font-medium"), "Suxless"),
+				Span(X.Class("truncate text-xs"), "v0.1.0"),
+			),
+		),
 	})
 }
 
